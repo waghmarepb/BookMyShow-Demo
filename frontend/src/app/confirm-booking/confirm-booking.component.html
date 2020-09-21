@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Bookmyshow</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<main role="main" class="container mt-5">
+
+  <div class="row mb-4">
+      <div class="col-md-8 offset-md-2">
+          <div class="card">
+              <div class="card-header">Thank you</div>
+              <div class="card-body">
+
+                  <h2 class="text-success">Thank you !!!</h2>
+                  <p>Your booking has been confirmed for movie : {{movie.movieName}}</p>
+                  <p>Booking Name: {{this.resultData.name}}</p>
+                  <p>Booking Email:{{this.resultData.date}}</p>
+                  <div>
+                    Booked tickets:
+                      <div class="d-inline-block" *ngFor="let tickets of this.resultData.bookedSit">
+                          <p class="text-danger">{{tickets}} ,</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <hr class="my-4">
+  <div class="footer text-center mb-3">
+
+      All rights reserved
+  </div>
+</main>

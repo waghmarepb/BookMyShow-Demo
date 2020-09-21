@@ -1,0 +1,76 @@
+<h1>show page</h1>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="/bookshow">Bookmyshow</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<main role="main" class="container mt-5">
+
+  <div class="row mb-4">
+      <div class="col-md-8 offset-md-2">
+          <div class="card">
+              <div class="card-header">Select no of tickets to book</div>
+              <div class="d-inline-block" >
+                  <div class="d-inline-block" *ngFor="let num of sitChoice; index as i">
+                    <div  (click)= "selecteSits(i+1)">
+                        <div [className]="(num == bookedValue) && selected ? 'clickable-buttons selected' : 'clickable-buttons'">
+                          {{num}}
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-header">Choose Movie</div>
+              <div class="card-body">
+                  <div class="d-flex">
+                      <div class="mx-5">
+                          <img src="./../assets/images/mission-mangal.jpeg" width="200">
+                          <p>{{movieName[0].movieName}}</p>
+                          <button class="btn btn-primary" (click)="selectedMovie(movieName[0])">Book Tickets</button>
+                      </div>
+                      <div class="mx-5">
+                          <img src="./../assets/images//section-375.jpeg" width="200">
+                          <p>{{movieName[1].movieName}}</p>
+                          <button class="btn btn-primary" (click)="selectedMovie(movieName[1])">Book Tickets</button>
+
+                      </div>
+                      <div class="mx-5">
+                          <img src="./../assets/images//dream-girl.jpeg" width="200">
+                          <p>{{movieName[2].movieName}}</p>
+                          <button class="btn btn-primary" (click)="selectedMovie(movieName[2])">Book Tickets</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <hr class="my-4">
+  <div class="footer text-center mb-3">
+
+      All rights reserved
+  </div>
+</main><!-- /.container -->
+

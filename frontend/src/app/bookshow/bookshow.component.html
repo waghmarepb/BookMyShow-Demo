@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Bookmyshow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container mt-5">
+    <form [formGroup]="movieForm"  (ngSubmit)="onSubmit()">
+
+
+        <div class="row mb-4">
+
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">Confirm your booking for :-{{bookingData.movieName}} </div>
+                    <div class="card-body">
+                        <div [ngClass]="{'has-error' : movieForm.get('date').errors &&
+                                        ((movieForm.get('date').touched) || (movieForm.get('date').dirty))}">
+                            <p (change) = "checkMoviedata(date)"> Choose Date:
+                                <input type="date" formControlName=date class="form-control col-md-3">
+                                <span *ngIf="movieForm.get('date').errors &&
+                                         ((movieForm.get('date').touched) || (movieForm.get('date').dirty))">
+                                    <small *ngIf="movieForm.get('date').errors.required" class="text-danger">
+                                        date is required
+                                    </small>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="seats-container"> Choose Seats:
+                            <div class="seats-row">
+                                <div class="d-inline-block">
+                                    <strong>A</strong>
+                                    <div class="d-inline-block" *ngFor="let num of sitChoiceA; index as i"
+                                        (click)="selecteSits('A'+num)">
+                                        <div
+                                            [className]="((bookedSit.includes('A'+num)) && selected)  ? 'clickable-buttons selected' : (alreadyBooked.includes('A'+num)) ?' clickable-buttons booked': 'clickable-buttons'">
+                                            {{num}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="seats-row">
+                                <div class="d-inline-block">
+                                    <strong>B</strong>
+                                    <div class="d-inline-block" *ngFor="let num of sitChoiceB; index as j"
+                                        (click)="selecteSits('B'+num)">
+                                        <div
+                                            [className]="((bookedSit.includes('B'+num)) && selected) ? 'clickable-buttons selected' : (alreadyBooked.includes('B'+num)) ?' clickable-buttons booked' :'clickable-buttons'">
+                                            {{num}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="seats-row">
+                                <div class="d-inline-block">
+                                    <strong>C</strong>
+                                    <div class="d-inline-block" *ngFor="let num of sitChoiceC; index as k"
+                                        (click)="selecteSits('C'+num)">
+                                        <div
+                                            [className]="((bookedSit.includes('C'+num)) && selected) ? 'clickable-buttons selected' : (alreadyBooked.includes('C'+num)) ?' clickable-buttons booked' :'clickable-buttons'">
+                                            {{num}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex mt-3">
+                            <div [ngClass]="{'has-error' : movieForm.get('name').errors &&
+                                            ((movieForm.get('name').touched) || (movieForm.get('name').dirty))}">
+                                <p class="pr-3"> Name:
+                                    <input type="text" formControlName="name" class="form-control">
+                                    <span *ngIf="movieForm.get('name').errors &&
+                                         ((movieForm.get('name').touched) || (movieForm.get('name').dirty))">
+                                        <small *ngIf="movieForm.get('name').errors.required" class="text-danger">
+                                            Name is required
+                                        </small>
+                                    </span>
+                                </p>
+                            </div>
+                            <div [ngClass]="{'has-error' : movieForm.get('email').errors &&
+                                        ((movieForm.get('email').touched) || (movieForm.get('email').dirty))}">
+                                <p class="pr-3"> Email:
+                                    <input type="text" formControlName="email" class="form-control">
+                                    <span *ngIf="movieForm.get('email').errors &&
+                                                ((movieForm.get('email').touched) || (movieForm.get('email').dirty))">
+                                        <small *ngIf="movieForm.get('email').errors.required" class="text-danger">
+                                            Email is required
+                                        </small>
+                                        <small *ngIf="movieForm.get('email').errors?.email" class="text-danger">
+                                            Email pattern is required
+                                        </small>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <img src="../../assets/images/screen.png">
+                <button type="submit" [disabled]="!movieForm.valid" class="btn btn-primary btn-lg">Confirm Booking</button>
+            </div>
+        </div>
+
+        <!-- routerLink="/confirm" -->
+
+        <hr class="my-4">
+        <div class="footer text-center mb-3">
+
+            All rights reserved
+        </div>
+    </form>
+</main><!-- /.container -->
